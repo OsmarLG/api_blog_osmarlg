@@ -2,18 +2,20 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-class Post extends Model
+class ActivityLog extends Model
 {
     use HasFactory;
 
     protected $fillable = [
-        'title',
-        'body',
-        'status',
-        'user_id',
+        'user_id', 
+        'action', 
+        'method', 
+        'description', 
+        'slug'
     ];
 
     public function user()

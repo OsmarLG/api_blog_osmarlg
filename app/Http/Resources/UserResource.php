@@ -24,6 +24,7 @@ class UserResource extends JsonResource
             'website' => $this->website,
             'website' => $this->website,
             'company' => json_decode($this->company),
+            'status' => $this->status ?? 'Inactive',
             'role' => $this->getRoleNames()->first(),
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,

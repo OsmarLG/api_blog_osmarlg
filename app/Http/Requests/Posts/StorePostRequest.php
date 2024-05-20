@@ -28,6 +28,7 @@ class StorePostRequest extends FormRequest
             //
             'title' => 'required|string|max:255',
             'body' => 'required|string',
+            'status' => 'sometimes|string',
             'user_id' => 'required'
         ];
     }

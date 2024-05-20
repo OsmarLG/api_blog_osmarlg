@@ -29,6 +29,7 @@ class PostResource extends JsonResource
                 'website' => $this->user->website,
                 'company' => json_decode($this->user->company),
             ],
+            'status' => $this->status ?? 'Inactive',
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
         ];

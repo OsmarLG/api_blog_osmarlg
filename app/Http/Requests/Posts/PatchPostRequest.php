@@ -24,6 +24,7 @@ class PatchPostRequest extends FormRequest
         return [
             'title' => 'sometimes|required|string|max:255',
             'body' => 'sometimes|required|string',
+            'status' => 'sometimes|string',
             'user_id' => 'sometimes'
         ];
     }

@@ -15,9 +15,16 @@ class PostRepository implements PostRepositoryInterface
         //
     }
 
-    public function all()
+    public function all($status = null)
     {
+        if ($status != null) return Post::with('user')->where('status', $status)->get();
+
         return Post::with('user')->get();
+    }
+
+    public function allForUser($id)
+    {
+        return Post::with('user')->where('user_id', $id)->get();
     }
 
     public function find($id) : ?Post

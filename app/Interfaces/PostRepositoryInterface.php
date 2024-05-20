@@ -7,7 +7,8 @@ use App\Models\Post;
 interface PostRepositoryInterface
 {
     //
-    public function all();
+    public function all($status = null);
+    public function allForUser($id);
     public function find($id) : ?Post;
     public function create(array $data) : Post;
     public function update($id, array $data): ?Post;

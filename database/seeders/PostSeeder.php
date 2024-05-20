@@ -22,6 +22,7 @@ class PostSeeder extends Seeder
             Post::create([
                 'title' => $post['title'],
                 'body' => $post['body'],
+                'status' => 'Active',
                 'user_id' => $post['userId'],
             ]);
         }

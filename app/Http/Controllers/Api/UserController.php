@@ -10,6 +10,8 @@ use App\Interfaces\UserRepositoryInterface;
 use App\Http\Requests\Users\PatchUserRequest;
 use App\Http\Requests\Users\StoreUserRequest;
 use App\Http\Requests\Users\UpdateUserRequest;
+use App\Models\ActivityLog;
+use Laravel\Sanctum\PersonalAccessToken;
 
 class UserController extends Controller
 {
@@ -24,6 +26,14 @@ class UserController extends Controller
     {
         $users = $this->users->all();
 
+        ActivityLog::create([
+            'user_id' => 11,
+            'action' => 'Get Users',
+            'method' => 'GET',
+            'description' => 'Get All Users',
+            'slug' => '/api/users',
+        ]);
+
         return response()->json([
             'data'    => [
                 "users" => UserResource::collection($users)
@@ -36,6 +46,14 @@ class UserController extends Controller
     public function show($id)
     {
         $user = $this->users->find($id);
+
+        ActivityLog::create([
+            'user_id' => 11,
+            'action' => 'Get User',
+            'method' => 'GET',
+            'description' => 'Get User with Id: ' . $id,
+            'slug' => '/api/user/' . $id,
+        ]);
 
         if ($user) {
             return response()->json([
@@ -59,6 +77,14 @@ class UserController extends Controller
     public function store(StoreUserRequest $request) {
         $validatedData = $request->validated();
         $user = $this->users->create($validatedData);
+
+        ActivityLog::create([
+            'user_id' => 11,
+            'action' => 'Create User',
+            'method' => 'POST',
+            'description' => 'Create User',
+            'slug' => '/api/users',
+        ]);
         
         return response()->json([
             'data'    => [
@@ -84,6 +110,14 @@ class UserController extends Controller
 
             $validatedData = $request->validated();
             $updatedUser = $this->users->update($user, $validatedData);
+
+            ActivityLog::create([
+                'user_id' => 11,
+                'action' => 'Update User',
+                'method' => 'PUT',
+                'description' => 'Update User with Id: ' . $id,
+                'slug' => '/api/user/' . $id,
+            ]);
         
             return response()->json([
                 'data'    => [
@@ -128,6 +162,14 @@ class UserController extends Controller
             $validatedData = $request->validated();            
             $updatedUser = $this->users->patch($user, $validatedData);
 
+            ActivityLog::create([
+                'user_id' => 11,
+                'action' => 'Patch User',
+                'method' => 'PATCH',
+                'description' => 'Patch User with Id: ' . $id,
+                'slug' => '/api/user/' . $id,
+            ]);
+
             return response()->json([
                 'data'    => new UserResource($updatedUser),
                 'status'  => 'success',
@@ -156,6 +198,14 @@ class UserController extends Controller
     {
         try {
             $deleted = $this->users->delete($id);
+
+            ActivityLog::create([
+                'user_id' => 11,
+                'action' => 'Delete User',
+                'method' => 'DESTROY',
+                'description' => 'Delete User with Id: ' . $id,
+                'slug' => '/api/user/' . $id,
+            ]);
     
             return response()->json([
                 'data'    => "User with ID: {$id} has been deleted.",

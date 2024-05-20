@@ -1,3 +1,48 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.tabs {
+    margin-bottom: 20px;
+}
+
+.tab-links {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    border-bottom: 1px solid #ccc;
+}
+
+.tab-link {
+    margin-right: 5px;
+}
+
+.tab-link a {
+    display: block;
+    padding: 10px 20px;
+    text-decoration: none;
+    color: #4a5568;
+    transition: color 0.3s, border-color 0.3s;
+}
+
+.tab-link a:hover {
+    color: #4299e1;
+}
+
+.tab-link.active a {
+    color: #4299e1;
+    border-bottom-color: #4299e1;
+}
+
+.tab-content {
+    border: 1px solid #ccc;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 0 5px 5px 5px;
+    display: none;
+}
+
+.tab-content.active {
+    display: block;
+}

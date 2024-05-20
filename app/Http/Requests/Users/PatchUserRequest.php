@@ -2,7 +2,10 @@
 
 namespace App\Http\Requests\Users;
 
+use Illuminate\Http\JsonResponse;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Contracts\Validation\Validator;
+use Illuminate\Http\Exceptions\HttpResponseException;
 use Illuminate\Validation\Rule;
 
 class PatchUserRequest extends FormRequest
@@ -43,9 +46,21 @@ class PatchUserRequest extends FormRequest
             'current_password' => 'required_with:password|string|min:8',
             'address' => 'sometimes|json',
             'phone' => 'sometimes|string|max:255',
-            'website' => 'sometimes|url|max:255',
+            'website' => 'nullable|url|min:0|max:255',
             'company' => 'sometimes|json',
+            'status' => 'sometimes|string',
             'role' => 'sometimes|string|exists:roles,name',
         ];
+    }
+
+    protected function failedValidation(Validator $validator)
+    {
+        $response = new JsonResponse([
+            'data'    => $this->all(),
+            'status'  => 'error',
+            'errors'  => $validator->errors(),
+        ], 422);
+
+        throw new HttpResponseException($response);
     }
 }

@@ -29,10 +29,11 @@ class StoreUserRequest extends FormRequest
             'username' => 'required|string|max:255|unique:users',
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:8|confirmed',
-            'address' => 'required|json',
-            'phone' => 'required|string|max:255',
-            'website' => 'required|url|max:255',
-            'company' => 'required|json',
+            'address' => 'sometimes|json',
+            'phone' => 'sometimes|string|max:255',
+            'website' => 'nullable|url|max:255',
+            'company' => 'sometimes|json',
+            'status' => 'sometimes|string',
             'role' => 'sometimes|string|exists:roles,name',
         ];
     }

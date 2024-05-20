@@ -33,6 +33,7 @@ class UserSeeder extends Seeder
                 'phone' => $user['phone'],
                 'website' => $user['website'],
                 'company' => json_encode($user['company']),
+                'status' => 'Active',
             ]);
 
             $newUser->assignRole($roleAuthor);
@@ -46,7 +47,9 @@ class UserSeeder extends Seeder
             'address' => '{"street": "Kulas Light","suite": "Apt. 556","city": "Gwenborough","zipcode": "92998-3874","geo": {"lat": "-37.3159","lng": "81.1496"}}',
             'phone' => '6151559659',
             'website' => 'surcode.com.mx',
-            'company' => '{"name":"SurCode","catchPhrase": "Proactive didactic","bs": "synergize scalable supply-chains"}'
+            'company' => '{"name":"SurCode","catchPhrase": "Proactive didactic","bs": "synergize scalable supply-chains"}',
+            'status' => 'Active',
+            
         ]);
 
         $adminUser->assignRole($roleAdmin);

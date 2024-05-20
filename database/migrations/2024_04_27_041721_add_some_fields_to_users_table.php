@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('phone')->nullable()->after('address');
             $table->string('website')->nullable()->after('phone');
             $table->json('company')->nullable()->after('website');
+            $table->enum('status', ['Active', 'Inactive'])->default('Inactive');
         });
     }
 
