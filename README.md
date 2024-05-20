@@ -173,6 +173,8 @@ Esta API permite la gestión de usuarios y publicaciones con diferentes roles y 
     - Crear publicaciones.
     - Ver publicaciones de otros autores.
 
+## Osmar LG
+La API esta creada con patron repositorio, aunque me falto extender de un archivo base, sin embargo es la misma logica.
 
 ####
 Este `README.md` proporciona una guía detallada para instalar y configurar el proyecto Laravel, así como una descripción clara de las funcionalidades y las rutas disponibles en la API.
